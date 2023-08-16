@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import StatusCode from "../utils/StatusCode";
 
 
 const initialState = { //using the object here because to handle all the aspect of api call like it is not only always returning datas, it can be error or other state of slice
     data : [],
-    status: 'idle'
+    status:StatusCode.IDLE
 }
 
 const productSlice = createSlice({
@@ -17,14 +18,14 @@ const productSlice = createSlice({
     extraReducers:(builder) =>{
         builder
         .addCase(getProducts.pending,(state,action) =>{
-            state.status = 'loading' ;
+            state.status = StatusCode.LOADING ;
         })
         .addCase(getProducts.fulfilled,(state,action) =>{
             state.data = action.payload
-            state.status = 'idle'
+            state.status = StatusCode.IDLE;
         })
         .addCase(getProducts.rejected,(state,action) =>{
-            state.status = 'error'
+            state.status = StatusCode.ERROR;
         })
     }
 })

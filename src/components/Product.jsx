@@ -4,6 +4,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { Alert } from "react-bootstrap";
 import { add } from "../store/cartSlice";
 import { getProducts } from "../store/productSlice";
+import StatusCode from "../utils/StatusCode";
 
 const Product = () => {
     const dispatch = useDispatch() 
@@ -21,11 +22,11 @@ const Product = () => {
   }, []);
 
 
-  if(status === 'loading'){
+  if(status === StatusCode.LOADING){
     return <Alert key='success' variant="success">Loading...</Alert>
   }
 
-  if(status === 'error'){
+  if(status === StatusCode.ERROR){
     return <Alert key='danger' variant="danger">Something went wrong! Please try again later</Alert>
   }
 
